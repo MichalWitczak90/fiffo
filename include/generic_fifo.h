@@ -11,26 +11,11 @@
 class Generic_fifo
 {
 public:
-    Generic_fifo(int size_actual, int size_max);
-    ~Generic_fifo();
-
-    int size_actual();
-    int size_max();
+    virtual int size_actual() = 0;
+    virtual int size_max() = 0;
 
     bool is_empty();
     bool is_full();
-
-    virtual int size_item() = 0;
-    virtual int size_total() = 0;
-    virtual void push(void * from) = 0;
-    virtual void pop(void * to) = 0;
-
-protected:
-    int _size_actual;
-    int _size_max;
-
-private:
-    
 
 }; /* class: Generic_fifo */
 

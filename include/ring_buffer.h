@@ -20,18 +20,15 @@ public:
     void push(const T & item);
     T pop();
 
-    int index_front();
-    int index_back();
-
-    int size_item();
-    int size_total();
-    void push(void * from);
-    void pop(void * to);
+    int size_actual();
+    int size_max();
 
 protected:
-    
+    int _index_front();
+    int _index_back();    
 
 private:
+    int _size_actual;
     T _item[size];
     int _head;
 
@@ -40,7 +37,7 @@ private:
 template<typename T, int size>
 Ring_buffer<T, size>::Ring_buffer()
 :
-Generic_fifo(0, size),
+_size_actual(0),
 _head(0)
 {
 
@@ -66,7 +63,7 @@ T Ring_buffer<T, size>::pop()
 {
     if (_size_actual)
     {
-        auto temp = _item[index_front()];
+        auto temp = _item[_index_front()];
         _size_actual--;
         return temp;
     }   
@@ -74,41 +71,27 @@ T Ring_buffer<T, size>::pop()
 }
 
 template<typename T, int size>
-int Ring_buffer<T, size>::index_front()
+int Ring_buffer<T, size>::_index_front()
 {
     return (_head >= _size_actual) ? _head - _size_actual : _head + size - _size_actual;
 }
 
 template<typename T, int size>
-int Ring_buffer<T, size>::index_back()
+int Ring_buffer<T, size>::_index_back()
 {
     return (_head != 0) ? _head - 1 : size - 1;
 }
 
 template<typename T, int size>
-void Ring_buffer<T, size>::push(void * from)
+int Ring_buffer<T, size>::size_actual()
 {
-    auto * ptr = static_cast<T *>(from);
-    push(*ptr);
+    return _size_actual;
 }
 
 template<typename T, int size>
-void Ring_buffer<T, size>::pop(void * to)
+int Ring_buffer<T, size>::size_max()
 {
-    auto * ptr = static_cast<T *>(to);
-    *ptr = pop();
-}
-
-template<typename T, int size>
-int Ring_buffer<T, size>::size_item()
-{
-    return sizeof(T);
-}
-
-template<typename T, int size>
-int Ring_buffer<T, size>::size_total()
-{
-    return sizeof(Ring_buffer<T, size>);
+    return size;
 }
 
 #endif /*define: ring_buffer_h*/
