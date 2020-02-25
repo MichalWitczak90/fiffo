@@ -1,17 +1,8 @@
-#ifdef build_platform_host
-
-#define CATCH_CONFIG_MAIN
-#include "build.h"
-#include "test.h"
-
-#else
-
-#include "build.h"
+#include "ring_buffer.h"
+#include "queue.h"
 
 int main()
 {
 
-    while(1);
+    return 0;
 }
-
-#endif

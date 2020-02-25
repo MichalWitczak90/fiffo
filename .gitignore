@@ -1,4 +1,1 @@
-build/
-binary/
-.vscode/
-dump/
+fifo.elf
