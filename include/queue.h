@@ -13,7 +13,7 @@
 template<typename T = int>
 class Queue : public Generic_fifo
 {
-    static constexpr auto size_internal = 4;
+    static constexpr auto size_internal = 1024;
     using Block = Ring_buffer<T, size_internal>;
     struct Node {Block * block; Node * parent;};
 
@@ -21,7 +21,7 @@ public:
     Queue();
     ~Queue();
 
-    void push(const T & item);
+    void push(T item);
     T pop();
 
     int size_actual();
@@ -64,7 +64,7 @@ Queue<T>::~Queue()
 }
 
 template<typename T>
-void Queue<T>::push(const T & item)
+void Queue<T>::push(T item)
 {
     if (_node->block->is_full()) _allocate();
     

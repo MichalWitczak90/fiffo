@@ -17,7 +17,7 @@ public:
     Ring_buffer();
     ~Ring_buffer();
 
-    void push(const T & item);
+    void push(T item);
     T pop();
 
     int size_actual();
@@ -50,7 +50,7 @@ Ring_buffer<T, size>::~Ring_buffer()
 }
 
 template<typename T, int size>
-void Ring_buffer<T, size>::push(const T & item)
+void Ring_buffer<T, size>::push(T item)
 {
     _item[_head] = item;
     _head = (_head + 1) % size;
