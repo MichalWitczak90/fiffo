@@ -10,6 +10,27 @@
 
 #include "ring_buffer.h"
 
+/**
+ * \class Queue
+ * \brief Szablonowa klasa kolejki fifo
+ * 
+ * Klasa stanowi implementacje kolejki fifo o szablonowym typie oraz nieograniczonym rozmiarze.
+ * W swojej implementacji klasa wykorzystuje wykonany wczesniej bufor kolowy, ktorego instancje
+ * powolywane sa do zycia poprzez metoda new w zaleznosci od aktualnych potrzeb.
+ * 
+ * Dla przykladu, podczas inicjalizacji obiektu kolejki powstaje instancja bufora kolowego o
+ * rozmiarze 1024 (rozmiar ten jest parametrem zaszytym w klasie, jednak istnieje mozliwosc
+ * jego zmiany). Podczas dodawania elementow, wewnetrznie umieszczane sa one w buforze kolowym 
+ * az do momentu jego wypelnienia. Jezeli do tego dojdzie, powolywany jest kolejny bufor
+ * a wskaznik aktualnego bufora zostaje zmieniony (rozwijanie kolejki). Analogicznie, podczas
+ * usuwania elementow z kolejki usuwane sa one tak naprawde w aktualnego bufora kolowego az do
+ * momentu jego oproznienia. Jezeli do tego dojdzie, bufor jest usuwany z pamieci, natomiast
+ * wskaznik aktualnego bufora zostaje zmieniony (zwijanie kolejki).
+ * 
+ * Dodatkowo, klasa uzupelnia metody wirtualne klasy bazowej, aby mogla zostac klasa o charakterze
+ * "konkretnym". 
+ */
+
 template<typename T = int>
 class Queue : public Generic_fifo
 {

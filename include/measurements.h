@@ -13,6 +13,21 @@
 
 using Time = std::chrono::microseconds;
 
+/**
+ * @brief Funkcja pomiaru czasu wykonania
+ *
+ * @param[in] functor lambda funkcji ktora bedzie podlegala sprawdzeniu
+ * @param[in] iterations liczba iteracji wywolania funktora
+ * @return czas egzekucji [n] iteracji funktora w jednostce [us]
+ * 
+ * Funkcja w swojej implementacji wykorzystuje biblioteke chrono, w celu 
+ * dwukrotnego pobrania aktualnego czasu w systemie (przed i po wykonaniu
+ * [n] iteracji funktora).
+ * 
+ * Wykorzystanie funktora pozwala na zastosowanie jednej funkcji pomiarowej
+ * niezaleznie od typu kontenera oraz formy wywolania jego metody.
+**/
+
 template<typename F>
 long int measure(F functor, int iterations)
 {

@@ -10,6 +10,31 @@
 
 #include "generic_fifo.h"
 
+/**
+ * \class Ring_buffer
+ * \brief Szablonowa klasa bufora kolowego
+ * 
+ * Klasa stanowi reprezentacje bufora kolowego o statycznie nadawanym rozmiarze,
+ * znanym w momencie kompilacji. Elementy umieszczanie w buforze przechowywane sa w tablicy, 
+ * oraz nadpisywane w przypadku przepelnienia bufora
+ * 
+ * Wewnetrzne dzialanie klasy polega na przechowywaniu indeksu umieszczenia kolejnego elementu
+ * (zmienna _head) oraz wartosci opisujacej aktualne zajecie kontenera (zmienna _size_actual). 
+ * 
+ * Podczas umieszczania elementu indeks zostaje przesuniety na kolejny element tablicy (w przypadku, 
+ * dojscia wskaznika do konca tablicy, z wykorzystaniem operacji modulo zostaje on przesuniety na
+ * jej poczatek - zgodnie z teoria o buforze kolowym), 
+ * natomiast rozmiar aktualny ulega zwiekszeniu o 1 (w przypadku przepelnienia indeks pozostaje 
+ * na wartosci tozsamej z rozmiarem maksymalnym bufora)
+ * 
+ * Podczas zdejmowania elementu z kolejki, jezeli jej rozmiar jest niezerowy nastepuje pobranie
+ * elementu z tablicy oraz zwrocenie go uzytkownikowi. W przypadu gdy bufor byl pusty, metoda
+ * zwroci domyslny konstruktor typu podanego w szablonie klasy.
+ * 
+ * Dodatkowo, klasa uzupelnia metody wirtualne klasy bazowej, aby mogla zostac klasa o charakterze
+ * "konkretnym". 
+ */
+
 template<typename T = int, int size = 32>
 class Ring_buffer : public Generic_fifo
 {
