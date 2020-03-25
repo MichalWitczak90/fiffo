@@ -9,6 +9,9 @@
 1. `cd doxygen/html`
 1. `firefox index.html`
 
+# Testowanie kompilacji na MacOS
+1. `make > output.txt 2>&1`
+
 
 
 
