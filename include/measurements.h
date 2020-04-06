@@ -39,5 +39,4 @@ long int measure(F functor, int iterations)
     return std::chrono::duration_cast<Time>(std::chrono::steady_clock::now() - start).count();
 }
 
-
 #endif /* define: measurements_h */
