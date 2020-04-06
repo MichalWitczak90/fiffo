@@ -1,5 +1,14 @@
 #include "generic_fifo.h"
 
+Generic_fifo::Generic_fifo()
+{
+
+}
+
+Generic_fifo::~Generic_fifo()
+{
+    
+}
 
 bool Generic_fifo::is_empty()
 {
