@@ -1,5 +1,5 @@
 # Instalacja oraz kompilowanie
-1. `git clone https://github.com/ErnestSzczepaniak/fifo.git`
+1. `git clone https://github.com/MichalWitczak90/fiffo.git`
 2. `cd fifo/`
 3. `make`
 
